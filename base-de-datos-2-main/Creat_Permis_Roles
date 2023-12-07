@@ -1,0 +1,137 @@
+--ROLES
+
+CREATE ROLE Gerente;
+CREATE ROLE Administrador;
+CREATE ROLE Bodeguero;
+CREATE ROLE Vendedor;
+CREATE ROLE RecursosHumanos;
+***************************************************************************
+-- AGREGAR USUARIOS A ROLES
+
+-- Inicio de sesión para el rol GERENTE
+CREATE LOGIN GerenteLogin WITH PASSWORD = 'ContraseñaGerente';
+-- Usuario para el rol GERENTE
+CREATE USER GerenteUser FOR LOGIN GerenteLogin;
+-- Asignar el usuario al rol GERENTE
+ALTER ROLE Gerente ADD MEMBER GerenteUser;
+
+-- Inicio de sesión para el rol ADMINISTRADOR
+CREATE LOGIN AdministradorLogin WITH PASSWORD = 'ContraseñaAdministrador';
+-- Usuario para el rol ADMINISTRADOR
+CREATE USER AdministradorUser FOR LOGIN AdministradorLogin;
+-- Asignar el usuario al rol ADMINISTRADOR
+ALTER ROLE Administrador ADD MEMBER AdministradorUser;
+
+-- Inicio de sesión para el rol BODEGUERO
+CREATE LOGIN BodegueroLogin WITH PASSWORD = 'ContraseñaBodeguero';
+-- Usuario para el rol BODEGUERO
+CREATE USER BodegueroUser FOR LOGIN BodegueroLogin;
+-- Asignar el usuario al rol BODEGUERO
+ALTER ROLE Bodeguero ADD MEMBER BodegueroUser;
+
+-- Inicio de sesión para el rol VENDEDOR
+CREATE LOGIN VendedorLogin WITH PASSWORD = 'ContraseñaVendedor';
+-- Usuario para el rol VENDEDOR
+CREATE USER VendedorUser FOR LOGIN VendedorLogin;
+-- Asignar el usuario al rol VENDEDOR
+ALTER ROLE Vendedor ADD MEMBER VendedorUser;
+
+-- Inicio de sesión para el rol RECURSOS_HUMANOS
+CREATE LOGIN RecursosHumanosLogin WITH PASSWORD = 'ContraseñaRecursosHumanos';
+-- Usuario para el rol RECURSOS_HUMANOS
+CREATE USER RecursosHumanosUser FOR LOGIN RecursosHumanosLogin;
+-- Asignar el usuario al rol RECURSOS_HUMANOS
+ALTER ROLE RecursosHumanos ADD MEMBER RecursosHumanosUser;
+**********************************************************************************
+-- OTORGAR PERMISOS (En base a las opciones)
+
+-- Permiso para gestionar países, departamentos, distritos y municipios
+GRANT INSERT, SELECT, UPDATE ON dbo.pais TO Gerente;
+GRANT INSERT, SELECT, UPDATE ON dbo.departamento TO Gerente;
+GRANT INSERT, SELECT, UPDATE ON dbo.distrito TO Gerente;
+GRANT INSERT, SELECT, UPDATE ON dbo.municipio TO Gerente;
+
+-- Permiso para gestionar proveedores
+GRANT INSERT, SELECT, UPDATE ON dbo.proveedor TO Gerente;
+
+-- Permiso para gestionar laboratorios
+GRANT INSERT, SELECT, UPDATE ON dbo.laboratorio TO Gerente;
+
+-- Permiso para gestionar productos, proveedores y productos proveedor
+GRANT SELECT ON dbo.producto TO Gerente;
+GRANT SELECT ON dbo.productosProveedor TO Gerente;
+
+-- Permiso para gestionar detalles de laboratorio
+GRANT SELECT ON dbo.detalleLaboratorio TO Gerente;
+
+-- Permiso para gestionar clientes
+GRANT SELECT ON dbo.cliente TO Gerente;
+
+-- Permiso para gestionar ventas
+GRANT SELECT ON dbo.venta TO Gerente;
+
+-- Permiso para gestionar empleados y cargos de empleados
+GRANT SELECT ON dbo.empleado TO Gerente;
+GRANT SELECT ON dbo.cargoEmpleado TO Gerente;
+***************************************************************
+
+-- Para Gestionar Usuarios
+GRANT INSERT, SELECT, UPDATE ON Usuarios TO Administrador;
+***************************************************************
+
+-- Para Gestionar Productos, Productos Proveedor
+GRANT INSERT, SELECT, UPDATE ON Producto TO Bodeguero;
+GRANT INSERT, SELECT, UPDATE ON ProductosProveedor TO Bodeguero;
+
+-- Para Presentacion Producto
+GRANT INSERT, SELECT, UPDATE ON PresentacionProducto TO Bodeguero;
+
+-- Para Gestionar Laboratorios, Detalle Laboratorios
+GRANT INSERT, SELECT, UPDATE ON laboratorio TO Bodeguero;
+GRANT INSERT, SELECT, UPDATE ON DetalleLaboratorio TO Bodeguero;
+********************************************************************
+
+-- Permiso para gestionar productos
+GRANT SELECT ON dbo.producto TO Vendedor;
+
+-- Permiso para gestionar clientes
+GRANT INSERT, SELECT, UPDATE ON dbo.cliente TO Vendedor;
+
+-- Permiso para gestionar direcciones
+GRANT INSERT, SELECT, UPDATE ON dbo.direccion TO Vendedor;
+
+-- Permiso para gestionar ventas y detalles de venta
+GRANT INSERT, SELECT, UPDATE ON dbo.venta TO Vendedor;
+GRANT INSERT, SELECT, UPDATE ON dbo.detalleVenta TO Vendedor;
+
+-- Permiso para gestionar países, departamentos, distritos, proveedores, productos proveedor, laboratorios y detalles de laboratorios
+GRANT SELECT ON dbo.pais TO Vendedor;
+GRANT SELECT ON dbo.departamento TO Vendedor;
+GRANT SELECT ON dbo.distrito TO Vendedor;
+GRANT SELECT ON dbo.proveedor TO Vendedor;
+GRANT SELECT ON dbo.productosProveedor TO Vendedor;
+GRANT SELECT ON dbo.laboratorio TO Vendedor;
+GRANT SELECT ON dbo.detalleLaboratorio TO Vendedor;
+************************************************************************
+
+-- Permiso para gestionar empleados y cargos de empleados
+GRANT SELECT ON dbo.empleado TO Recursos_Humanos;
+GRANT INSERT, SELECT, UPDATE ON dbo.cargoEmpleado TO Recursos_Humanos;
+
+-- Permiso para gestionar direcciones
+GRANT INSERT, SELECT, UPDATE ON dbo.direccion TO Recursos_Humanos;
+***********************************************************************
+
+-- CONSULTAS
+go
+-- Consulta para obtener una lista de logins en la instancia de SQL Server
+select name from sys.server_principals where type_desc = 'SQL_LOGIN';
+go
+-- Consulta para obtener una lista de usuarios en la instancia de SQL Server
+select name from sys.database_principals where type_desc = 'SQL_USER';
+go
+-- Consulta para obtener una lista de roles en la instancia de SQL Server
+select name from sys.database_principals where type_desc = 'DATABASE_ROLE';
+
+
+

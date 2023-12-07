@@ -1,0 +1,11 @@
+CREATE PROCEDURE sp_ConsultarVentasPorCliente
+    @p_idCliente INT
+AS
+BEGIN
+    SELECT c.nombre AS NombreCliente, v.fechaVenta, p.nombre AS NombreProducto, dv.cantidad, dv.precioUnitario
+    FROM cliente c
+    JOIN venta v ON c.id = v.idCliente
+    JOIN detalleVenta dv ON v.id = dv.idVenta
+    JOIN producto p ON dv.idProducto = p.id
+    WHERE c.id = @p_idCliente;
+END;

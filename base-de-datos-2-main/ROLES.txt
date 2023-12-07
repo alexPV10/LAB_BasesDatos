@@ -1,0 +1,83 @@
+ROLES: 
+	GERENTE: 
+		OPCIONES: 
+			*GESTIONAR PAIS, DEPARTAMENTOS, DISTRITOS, MUNICIPIO
+				-- AGREGAR (insert)
+				-- LEER	   (select)
+				-- ACTUALIZAR (update)
+			*GESTIONAR PROVEEDOR
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR  (update)
+			*GESTIONAR LABORATORIOS
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR (update)
+			*GESTIONAR PRODUCTOS, PROVEEDOR, PRODUCTOS PROVEEDOR
+				-- LEER 
+			*GESTIONAR DETALLE LABORATORIO
+				-- LEER 
+			*GESTIONAR CLIENTES
+				-- LEER 
+			*GESTIONAR VENTAS
+				-- LEER 
+			*GESTIONAR  EMPLEADOS, CARGO EMPLEADO
+				-- LEER
+	ADMINISTRADOR:
+		OPCIONES: 
+			*GESTIONAR USUARIOS
+				-- AGREGAR  (insert)
+				-- LEER     (select)
+				-- ACTUALIZAR (update)
+	BODEGUERO:	
+		OPCIONES:
+			*GESTIONAR PRODUCTOS, PRODUCTOS PROVEEDOR
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR (update)
+			*GESTIONAR PROVEEDOR
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR  (update)
+			*PRESENTACION PRODUCTO
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR (update)
+			*GESTIONAR LABORATORIOS, DETALLE LABORATORIOS
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR (update)
+	VENDEDOR:	
+		OPCIONES:
+			*GESTIONAR PRODUCTOS 
+				-- LEER       (select) 
+			*GESTIONAR CLIENTES
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR (update)
+			*GESTIONAR DIRECCIONES
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR (update)
+			*GESTIONAR VENTA, DETALLE VENTA
+				- AGREGAR    (insert) 
+				- LEER       (select) 
+				- ACTUALIZAR (update)
+			*GESTIONAR PAIS, DEPARTAMENTO, DISTRITO
+				-- LEER 
+			*GESTIONAR PROVEEDOR, PRODUCTOS PROVEEDOR
+				-- LEER 
+			*GESTIONAR LABORATORIO, DETALLE LABORATORIO
+				-- LEER 
+
+	RECURSOS_HUMANOS:
+		OPCIONES: 
+			*GESTIONAR EMPLEADOS, CARGO EMPLEADO
+				-- LEER         (select) 
+				-- AGREGAR      (insert)
+				-- ACTUALIZAR   (update)
+			*GESTIONAR DIRECCIONES
+				-- AGREGAR    (insert)
+				-- LEER       (select) 
+				-- ACTUALIZAR (update)
+		
